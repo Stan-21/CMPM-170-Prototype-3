@@ -9,6 +9,12 @@ var inputs = {"right": Vector2.RIGHT,
 			"up": Vector2.UP,
 			"down": Vector2.DOWN}
 
+signal inputed
+signal flag_entered
+signal blue_entered
+signal red_entered
+
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("left"):
 		ray_cast.rotation = deg_to_rad(180)
@@ -24,6 +30,7 @@ func _input(event: InputEvent) -> void:
 			ray_cast.force_raycast_update()
 			if !ray_cast.is_colliding():
 				position += inputs[dir] * tile_size
+				inputed.emit()
 		
 
 
@@ -32,8 +39,12 @@ func _on_hazard_collision_body_entered(_body: Node2D) -> void:
 
 
 func _on_blue_collision_body_entered(_body: Node2D) -> void:
-	print("blue entered")
+	blue_entered.emit()
 
 
 func _on_red_collision_body_entered(_body: Node2D) -> void:
-	print("red entered")
+	red_entered.emit()
+
+
+func _on_flag_collision_body_entered(_body: Node2D):
+	flag_entered.emit()
