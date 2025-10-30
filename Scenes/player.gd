@@ -9,7 +9,7 @@ var inputs = {"right": Vector2.RIGHT,
 			"up": Vector2.UP,
 			"down": Vector2.DOWN}
 
-signal inputed
+signal inputed(dir)
 signal flag_entered
 signal blue_entered
 signal red_entered
@@ -30,7 +30,7 @@ func _input(event: InputEvent) -> void:
 			ray_cast.force_raycast_update()
 			if !ray_cast.is_colliding():
 				position += inputs[dir] * tile_size
-				inputed.emit()
+				inputed.emit(dir)
 		
 
 
