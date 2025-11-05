@@ -13,7 +13,7 @@ texture = ExtResource("1_kyqiw")
 script = ExtResource("2_gntrk")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(84, 0)
+target_position = Vector2(120, 0)
 collision_mask = 8
 
 [node name="BlueCollision" type="Area2D" parent="."]
@@ -43,8 +43,40 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FlagCollision"]
 shape = SubResource("CircleShape2D_gntrk")
 
+[node name="RightBooster" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightBooster"]
+shape = SubResource("CircleShape2D_gntrk")
+
+[node name="UpBooster" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpBooster"]
+shape = SubResource("CircleShape2D_gntrk")
+
+[node name="LeftBooster" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBooster"]
+shape = SubResource("CircleShape2D_gntrk")
+
+[node name="DownBooster" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DownBooster"]
+shape = SubResource("CircleShape2D_gntrk")
+
 [connection signal="body_entered" from="BlueCollision" to="." method="_on_blue_collision_body_entered"]
 [connection signal="body_entered" from="RedCollision" to="." method="_on_red_collision_body_entered"]
 [connection signal="body_entered" from="HazardCollision" to="." method="_on_hazard_collision_body_entered"]
 [connection signal="area_entered" from="FlagCollision" to="." method="_on_flag_collision_area_entered"]
 [connection signal="body_entered" from="FlagCollision" to="." method="_on_flag_collision_body_entered"]
+[connection signal="body_entered" from="RightBooster" to="." method="_on_right_booster_body_entered"]
+[connection signal="body_entered" from="UpBooster" to="." method="_on_up_booster_body_entered"]
+[connection signal="body_entered" from="LeftBooster" to="." method="_on_left_booster_body_entered"]
+[connection signal="body_entered" from="DownBooster" to="." method="_on_down_booster_body_entered"]

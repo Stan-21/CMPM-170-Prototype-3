@@ -42,6 +42,8 @@ func _on_player_inputed(dir):
 		upCounter += 1
 	elif dir == "down":
 		downCounter += 1
+		
+	print(inputCounter)
 	
 	if (leftCounter > leftSafe) or (rightCounter > rightSafe) or (upCounter > upSafe) or (downCounter > downSafe):
 		get_tree().call_deferred("reload_current_scene")

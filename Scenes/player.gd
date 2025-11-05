@@ -14,6 +14,7 @@ signal flag_entered
 signal blue_entered
 signal red_entered
 
+signal booster_entered(dir)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("left"):
@@ -27,12 +28,13 @@ func _input(event: InputEvent) -> void:
 		
 	for dir in inputs.keys():
 		if event.is_action_pressed(dir):
-			ray_cast.force_raycast_update()
-			if !ray_cast.is_colliding():
-				position += inputs[dir] * tile_size
-				inputed.emit(dir)
+			move(dir)
+			inputed.emit(dir)
 		
-
+func move(dir):
+	ray_cast.force_raycast_update()
+	if !ray_cast.is_colliding():
+		position += inputs[dir] * tile_size
 
 func _on_hazard_collision_body_entered(_body: Node2D) -> void:
 	get_tree().reload_current_scene()
@@ -48,3 +50,27 @@ func _on_red_collision_body_entered(_body: Node2D) -> void:
 
 func _on_flag_collision_body_entered(_body: Node2D):
 	flag_entered.emit()
+
+
+func _on_right_booster_body_entered(body):
+	ray_cast.rotation = 0
+	move("right")
+	move("right")
+
+
+func _on_up_booster_body_entered(body):
+	ray_cast.rotation = 270
+	move("up")
+	move("up")
+
+
+func _on_left_booster_body_entered(body):
+	ray_cast.rotation = 180
+	move("left")
+	move("left")
+
+
+func _on_down_booster_body_entered(body):
+	ray_cast.rotation = 90
+	move("down")
+	move("down")

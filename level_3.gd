@@ -2,13 +2,13 @@ extends Node2D
 
 #----RULES----
 
-const minInput = 3
+const minInput = 0
 const maxInput = INF
 
 const blueSafe = true
 const redSafe = true
 
-const leftSafe = 0
+const leftSafe = INF
 const rightSafe = INF
 const upSafe = INF
 const downSafe = INF
@@ -49,6 +49,7 @@ func _on_player_inputed(dir):
 		get_tree().call_deferred("reload_current_scene")
 		print("died")
 
+
 func _on_player_flag_entered():
 	if (inputCounter <= minInput) or (inputCounter > maxInput):
 		get_tree().call_deferred("reload_current_scene")
@@ -60,8 +61,14 @@ func _on_player_flag_entered():
 func _on_player_blue_entered():
 	if !blueSafe:
 		get_tree().call_deferred("reload_current_scene")
+		print("died")
 
 
 func _on_player_red_entered():
 	if !redSafe:
 		get_tree().call_deferred("reload_current_scene")
+		print("died")
+
+
+func _on_player_booster_entered(dir):
+	pass # Replace with function body.

@@ -49,6 +49,10 @@ down={
 2d_physics/layer_3="hazard"
 2d_physics/layer_4="walls"
 2d_physics/layer_5="flag"
+2d_physics/layer_6="right"
+2d_physics/layer_7="up"
+2d_physics/layer_8="left"
+2d_physics/layer_9="down"
 
 [rendering]
 
