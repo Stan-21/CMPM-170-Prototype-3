@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dla1qlnfkh5cg"]
+[gd_scene load_steps=6 format=3 uid="uid://dla1qlnfkh5cg"]
 
 [ext_resource type="Script" uid="uid://bax1euatov44g" path="res://Scripts/level_1.gd" id="1_xfk5q"]
 [ext_resource type="PackedScene" uid="uid://bx1caayug8lts" path="res://Scenes/Map.tscn" id="2_7p6j4"]
 [ext_resource type="PackedScene" uid="uid://nggnmoo5st8s" path="res://Scenes/Player.tscn" id="3_6444e"]
 [ext_resource type="Texture2D" uid="uid://dovqnp4rid7j8" path="res://Assets/windego.png" id="4_7p6j4"]
+[ext_resource type="Script" uid="uid://dvpy8wwdvjdpv" path="res://Scenes/reset.gd" id="5_6444e"]
 
 [node name="Level1" type="Node2D"]
 scale = Vector2(3, 3)
@@ -18,8 +19,8 @@ tile_size = 16.0
 
 [node name="Windego" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(192.66667, 105)
-scale = Vector2(1, 0.2689348)
+position = Vector2(196.00002, 119)
+scale = Vector2(1.5619849, 0.3432586)
 texture = ExtResource("4_7p6j4")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -44,7 +45,16 @@ theme_override_font_sizes/font_size = 12
 text = "3. Do not touch the
  flag"
 
+[node name="Reset" type="Button" parent="."]
+offset_left = 290.66666
+offset_top = 152.0
+offset_right = 344.66666
+offset_bottom = 183.0
+text = "RESET"
+script = ExtResource("5_6444e")
+
 [connection signal="blue_entered" from="Player" to="." method="_on_player_blue_entered"]
 [connection signal="flag_entered" from="Player" to="." method="_on_player_flag_entered"]
 [connection signal="inputed" from="Player" to="." method="_on_player_inputed"]
 [connection signal="red_entered" from="Player" to="." method="_on_player_red_entered"]
+[connection signal="pressed" from="Reset" to="Reset" method="_on_pressed"]

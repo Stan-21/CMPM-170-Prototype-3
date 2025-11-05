@@ -33,7 +33,7 @@ func _process(_delta):
 	
 func death():
 	$Windego.visible = true
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(1).timeout
 	get_tree().call_deferred("reload_current_scene")
 	print("died")
 
@@ -52,12 +52,12 @@ func _on_player_inputed(dir):
 	print(inputCounter)
 	
 	if (leftCounter > leftSafe) or (rightCounter > rightSafe) or (upCounter > upSafe) or (downCounter > downSafe):
-		$VBoxContainer/Label2.add_theme_color_override("font_color", "green")
+		$VBoxContainer/Label2.add_theme_color_override("font_color", "red")
 		death()
 
 func _on_player_flag_entered():
 	if (inputCounter <= minInput) or (inputCounter > maxInput):
-		$VBoxContainer/Label1.add_theme_color_override("font_color", "green")
+		$VBoxContainer/Label1.add_theme_color_override("font_color", "red")
 		death()
 	else:
 		get_tree().change_scene_to_file("res://Scenes/level_2.tscn")

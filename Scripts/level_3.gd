@@ -6,7 +6,7 @@ const minInput = 0
 const maxInput = INF
 
 const blueSafe = true
-const redSafe = true
+const redSafe = false
 
 const leftSafe = INF
 const rightSafe = INF
@@ -54,8 +54,10 @@ func _on_player_flag_entered():
 	if (inputCounter <= minInput) or (inputCounter > maxInput):
 		get_tree().call_deferred("reload_current_scene")
 		print("died")
+	elif (inputCounter % 2 > 0):
+		get_tree().call_deferred("reload_current_scene")
 	else:
-		get_tree().call_deferred("change_scene_to_file", "res://Scenes/start.tscn")
+			get_tree().call_deferred("change_scene_to_file", "res://Scenes/start.tscn")
 
 
 func _on_player_blue_entered():
@@ -65,6 +67,7 @@ func _on_player_blue_entered():
 
 
 func _on_player_red_entered():
-	if !redSafe:
+	if !redSafe && (inputCounter % 2 > 0):
 		get_tree().call_deferred("reload_current_scene")
 		print("died")
+ 

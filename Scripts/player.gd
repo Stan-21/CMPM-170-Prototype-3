@@ -15,7 +15,9 @@ signal blue_entered
 signal red_entered
 
 func _input(event: InputEvent) -> void:
-	if !$DownBooster2.has_overlapping_bodies():
+	if event.is_action("reset"):
+		get_tree().reload_current_scene()
+	if !$BoosterCollision.has_overlapping_bodies():
 		if event.is_action_pressed("left"):
 			ray_cast.rotation = deg_to_rad(180)
 		elif event.is_action_pressed("right"):
@@ -27,13 +29,15 @@ func _input(event: InputEvent) -> void:
 		
 		for dir in inputs.keys():
 			if event.is_action_pressed(dir):
-				move(dir)
-				inputed.emit(dir)
+				if move(dir):
+					inputed.emit(dir)
+					
 		
 func move(dir):
 	ray_cast.force_raycast_update()
 	if !ray_cast.is_colliding():
 		position += inputs[dir] * tile_size
+		return true
 
 func moveTwo(dir):
 	ray_cast.force_raycast_update()
@@ -61,20 +65,20 @@ func _on_flag_collision_body_entered(_body: Node2D):
 
 
 func _on_right_booster_body_entered(_body: Node2D):
-	ray_cast.rotation = 0
+	ray_cast.rotation = deg_to_rad(0)
 	moveTwo("right")
 
 
 func _on_up_booster_body_entered(_body: Node2D):
-	ray_cast.rotation = 270
+	ray_cast.rotation = deg_to_rad(270)
 	moveTwo("up")
 
 
 func _on_left_booster_body_entered(_body: Node2D):
-	ray_cast.rotation = 180
+	ray_cast.rotation = deg_to_rad(180)
 	moveTwo("left")
 
 
 func _on_down_booster_body_entered(_body: Node2D):
-	ray_cast.rotation = 90
+	ray_cast.rotation = deg_to_rad(90)
 	moveTwo("down")
