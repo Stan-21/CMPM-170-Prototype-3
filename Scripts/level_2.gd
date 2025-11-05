@@ -55,6 +55,7 @@ func _on_player_flag_entered():
 		get_tree().call_deferred("reload_current_scene")
 		print("died")
 	else:
+		get_tree().change_scene_to_file("res://Scenes/level_3.tscn")
 		print("not died")
 
 

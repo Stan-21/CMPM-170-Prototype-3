@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dla1qlnfkh5cg"]
+[gd_scene load_steps=5 format=3 uid="uid://dla1qlnfkh5cg"]
 
 [ext_resource type="Script" uid="uid://bax1euatov44g" path="res://Scripts/level_1.gd" id="1_xfk5q"]
 [ext_resource type="PackedScene" uid="uid://bx1caayug8lts" path="res://Scenes/Map.tscn" id="2_7p6j4"]
 [ext_resource type="PackedScene" uid="uid://nggnmoo5st8s" path="res://Scenes/Player.tscn" id="3_6444e"]
+[ext_resource type="Texture2D" uid="uid://dovqnp4rid7j8" path="res://Assets/windego.png" id="4_7p6j4"]
 
 [node name="Level1" type="Node2D"]
 scale = Vector2(3, 3)
@@ -15,15 +16,33 @@ position = Vector2(56, 88)
 scale = Vector2(0.125, 0.125)
 tile_size = 16.0
 
-[node name="Label" type="Label" parent="."]
+[node name="Windego" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(192.66667, 105)
+scale = Vector2(1, 0.2689348)
+texture = ExtResource("4_7p6j4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 offset_left = 261.33334
 offset_top = 2.6666667
-offset_right = 379.6667
-offset_bottom = 101.0
+offset_right = 301.33334
+offset_bottom = 42.666668
+
+[node name="Label1" type="Label" parent="VBoxContainer"]
+layout_mode = 2
 theme_override_font_sizes/font_size = 12
-text = "1. Move 3 times
-2. You can move left
-3. Do not reach flag"
+text = "1. Move 3 times"
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "2. You can move left"
+
+[node name="Label3" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "3. Do not touch the
+ flag"
 
 [connection signal="blue_entered" from="Player" to="." method="_on_player_blue_entered"]
 [connection signal="flag_entered" from="Player" to="." method="_on_player_flag_entered"]

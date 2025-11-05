@@ -55,7 +55,7 @@ func _on_player_flag_entered():
 		get_tree().call_deferred("reload_current_scene")
 		print("died")
 	else:
-		print("not died")
+		get_tree().call_deferred("change_scene_to_file", "res://Scenes/start.tscn")
 
 
 func _on_player_blue_entered():
@@ -68,7 +68,3 @@ func _on_player_red_entered():
 	if !redSafe:
 		get_tree().call_deferred("reload_current_scene")
 		print("died")
-
-
-func _on_player_booster_entered(dir):
-	pass # Replace with function body.

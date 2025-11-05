@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="CMPM 170 - Prototype 3"
-run/main_scene="uid://dla1qlnfkh5cg"
+run/main_scene="uid://1uj2v7gmk47q"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
