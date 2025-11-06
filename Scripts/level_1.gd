@@ -32,6 +32,7 @@ func _process(_delta):
 	pass
 	
 func death():
+	$Player.queue_free()
 	$Windego.visible = true
 	await get_tree().create_timer(1).timeout
 	get_tree().call_deferred("reload_current_scene")
@@ -49,7 +50,7 @@ func _on_player_inputed(dir):
 	elif dir == "down":
 		downCounter += 1
 		
-	print(inputCounter)
+	$Steps.text = "Steps: " + str(inputCounter)
 	
 	if (leftCounter > leftSafe) or (rightCounter > rightSafe) or (upCounter > upSafe) or (downCounter > downSafe):
 		$VBoxContainer/Label2.add_theme_color_override("font_color", "red")

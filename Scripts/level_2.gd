@@ -32,6 +32,14 @@ func _process(_delta):
 	pass
 
 
+func death():
+	$Player.queue_free()
+	$Windego.visible = true
+	await get_tree().create_timer(1).timeout
+	get_tree().call_deferred("reload_current_scene")
+	print("died")
+	
+
 func _on_player_inputed(dir):
 	inputCounter += 1
 	if dir == "left":
@@ -43,29 +51,25 @@ func _on_player_inputed(dir):
 	elif dir == "down":
 		downCounter += 1
 		
-	print(inputCounter)
+	$Steps.text = "Steps: " + str(inputCounter)
 	
 	if (leftCounter > leftSafe) or (rightCounter > rightSafe) or (upCounter > upSafe) or (downCounter > downSafe):
-		get_tree().call_deferred("reload_current_scene")
-		print("died")
+		death()
 
 
 func _on_player_flag_entered():
 	if (inputCounter <= minInput) or (inputCounter > maxInput):
-		get_tree().call_deferred("reload_current_scene")
-		print("died")
+		death()
 	else:
 		get_tree().change_scene_to_file("res://Scenes/level_3.tscn")
-		print("not died")
 
 
 func _on_player_blue_entered():
 	if !blueSafe:
-		get_tree().call_deferred("reload_current_scene")
-		print("died")
+		death()
 
 
 func _on_player_red_entered():
 	if !redSafe:
-		get_tree().call_deferred("reload_current_scene")
-		print("died")
+		$VBoxContainer/Label.add_theme_color_override("font_color", "red")
+		death()

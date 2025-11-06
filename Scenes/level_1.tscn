@@ -53,6 +53,14 @@ offset_bottom = 183.0
 text = "RESET"
 script = ExtResource("5_6444e")
 
+[node name="Steps" type="Label" parent="."]
+offset_left = 6.0000005
+offset_top = 195.66667
+offset_right = 94.333336
+offset_bottom = 212.66667
+theme_override_font_sizes/font_size = 12
+text = "Steps: 0"
+
 [connection signal="blue_entered" from="Player" to="." method="_on_player_blue_entered"]
 [connection signal="flag_entered" from="Player" to="." method="_on_player_flag_entered"]
 [connection signal="inputed" from="Player" to="." method="_on_player_inputed"]
